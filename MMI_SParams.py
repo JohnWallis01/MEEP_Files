@@ -153,6 +153,9 @@ def PrintSParameters(Sxy, name="Sxy"):
     print(f"{name}: {Sxy:.4f}, Amplitude: {amplitude_dB:.2f} dB, ∠: {phase_deg:.2f} degrees")
     
 def main(wavelength_um=1.55, resolution=12, visualise=False):
+    import meep as mp
+    import matplotlib.pyplot as plt
+    import scipy.signal as sp
     sim = RunMMISimulation(wavelength_um, resolution)
     if visualise:
         VisualiseDevice(sim)
@@ -172,10 +175,6 @@ def MMI_SMatrix(wavelength_um, example=False, precomputed=False):
     return main(wavelength_um=wavelength_um, resolution=12, visualise=False)
 
 if __name__ == "__main__":
-    import meep as mp
-    import matplotlib.pyplot as plt
-    import scipy.signal as sp
-
     wavelength_um = 1.55 - 6*0.0001761
     resolution = 12
     main(wavelength_um=wavelength_um, resolution=resolution, visualise=True)

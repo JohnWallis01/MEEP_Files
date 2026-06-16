@@ -168,7 +168,7 @@ def main(wavelength_um=1.55, resolution=12, visualise=False):
 
 def MMI_SMatrix(wavelength_um, example=False, precomputed=False):
     if example:
-        return np.array([[1, 1j], [-1j, 1]])/np.sqrt(2)
+        return np.array([[1, 1j], [1j, 1]])/np.sqrt(2)
     if precomputed:
         # Return precomputed S-parameters if available
         pass

@@ -1,5 +1,6 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
+import scipy.signal as sp
 
 #CONSTANTS
     #a note on units c=1 and a=1um so all meep units are in microns (including time)
@@ -66,7 +67,6 @@ def GenerateMMIGeometry(   sm_waveguide_length, sm_waveguide_width,
 
 
 def RunMMISimulation(wavelength_um, resolution):
-
     geometry, cell = GenerateMMIGeometry(   sm_waveguide_length=sm_waveguide_length,
                                                     sm_waveguide_width=sm_waveguide_width,
                                                     sm_waveguide_spacing=sm_waveguide_spacing,
@@ -153,9 +153,9 @@ def PrintSParameters(Sxy, name="Sxy"):
     print(f"{name}: {Sxy:.4f}, Amplitude: {amplitude_dB:.2f} dB, ∠: {phase_deg:.2f} degrees")
     
 def main(wavelength_um=1.55, resolution=12, visualise=False):
+    #global import meep
+    global mp
     import meep as mp
-    import matplotlib.pyplot as plt
-    import scipy.signal as sp
     sim = RunMMISimulation(wavelength_um, resolution)
     if visualise:
         VisualiseDevice(sim)
@@ -173,6 +173,7 @@ def MMI_SMatrix(wavelength_um, example=False, precomputed=False):
         # Return precomputed S-parameters if available
         pass
     return main(wavelength_um=wavelength_um, resolution=12, visualise=False)
+
 
 if __name__ == "__main__":
     wavelength_um = 1.55 - 6*0.0001761
